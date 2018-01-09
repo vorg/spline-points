@@ -9,7 +9,9 @@
     "email": "marcin.ignac@gmail.com",
     "url": "https://github.com/vorg"
   },
-  "dependencies": {},
+  "dependencies": {
+    "primitive-cube": "^2.0.1"
+  },
   "devDependencies": {},
   "scripts": {
     "test": "node test.js"

@@ -9,7 +9,6 @@ function distance3 (a, x, y, z) {
   return Math.sqrt(dx * dx + dy * dy + dz * dz)
 }
 
-// catmull clark spline
 function interpolate (p0, p1, p2, p3, t) {
   var v0 = (p2 - p0) * 0.5
   var v1 = (p3 - p1) * 0.5
