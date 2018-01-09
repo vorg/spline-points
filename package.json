@@ -1,6 +1,6 @@
 {
   "name": "spline-points",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Subdivides path into spline points",
   "main": "index.js",
   "license": "MIT",
