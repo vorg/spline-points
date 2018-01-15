@@ -10,8 +10,6 @@ const splinePoints = require('..')
 
 const p = [[0, 0, 0], [1, 0, 0], [2, 1, 0]]
 const sp = splinePoints(p, { segmentLength: 0.1 })
-console.log(sp)
-return
 const ctx = createContext({ width: 1280, height: 720 })
 const cube = createCube(0.1, 0.02, 0.02)
 document.body.style.background = 'black'
@@ -22,7 +20,6 @@ const camera = require('pex-cam/perspective')({
 })
 const orbiter = require('pex-cam/orbiter')({ camera: camera })
 
-console.log(sp)
 
 random.seed(0)
 
