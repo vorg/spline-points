@@ -21,8 +21,9 @@ function splinePoints (points, options) {
   var isClosedPath = options && options.closed
   var segmentLength = (options && options.segmentLength) ? options.segmentLength : 0
 
-  var newPoints = []
-  for (let i = 0; i < points.length; i++) {
+  var subpoints = []
+  var numPoints = isClosedPath ? points.length : points.length - 1
+  for (let i = 0; i < numPoints; i++) {
     var c0, c1, c2, c3
     if (isClosedPath) {
       c0 = (i - 1 + points.length) % points.length
@@ -48,7 +49,7 @@ function splinePoints (points, options) {
       var x = interpolate(points[c0][0], points[c1][0], points[c2][0], points[c3][0], t)
       var y = interpolate(points[c0][1], points[c1][1], points[c2][1], points[c3][1], t)
       var z = interpolate(points[c0][2], points[c1][2], points[c2][2], points[c3][2], t)
-      newPoints.push([x, y, z])
+      subpoints.push([x, y, z])
     }
   }
 
@@ -56,8 +57,8 @@ function splinePoints (points, options) {
   var travelledDist = 0
   var prevPoint = points[0]
   finalPoints.push(prevPoint)
-  for (let i = 0; i < newPoints.length; i++) {
-    var p = newPoints[i]
+  for (let i = 0; i < subpoints.length; i++) {
+    var p = subpoints[i]
     travelledDist += distance(prevPoint, p)
     if (travelledDist >= segmentLength) {
       finalPoints.push(p)
@@ -66,6 +67,9 @@ function splinePoints (points, options) {
     prevPoint = p
   }
 
+  if (!isClosedPath && distance(finalPoints[finalPoints.length - 1], subpoints[subpoints.length - 1]) > segmentLength / 2) {
+    finalPoints.push(subpoints[subpoints.length - 1])
+  }
   return finalPoints
 }
 
